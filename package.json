@@ -5,10 +5,22 @@
   "main": "dist/index.js",
   "module": "dist/index.msj",
   "types": "dist/index.d.ts",
+  "files": [
+    "lib"
+  ],
   "scripts": {
     "build": "tsup lib/index.ts --format cjs,esm --dts",
     "lint": "tsc"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/LucaPalminteri/supabase-repository"
+  },
+  "keywords": [
+    "typescript",
+    "javascript",
+    "supabase"
+  ],
   "author": "Luca Palminteri",
   "license": "MIT",
   "dependencies": {
