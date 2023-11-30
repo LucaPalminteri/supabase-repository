@@ -1,0 +1,22 @@
+{
+  "name": "supabase-repository",
+  "version": "1.0.6",
+  "description": "",
+  "main": "dist/index.js",
+  "module": "dist/index.msj",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsup lib/index.ts --format cjs,esm --dts",
+    "lint": "tsc"
+  },
+  "author": "Luca Palminteri",
+  "license": "MIT",
+  "dependencies": {
+    "@supabase/supabase-js": "^2.39.0"
+  },
+  "devDependencies": {
+    "@changesets/cli": "^2.27.1",
+    "tsup": "^8.0.1",
+    "typescript": "^5.3.2"
+  }
+}
