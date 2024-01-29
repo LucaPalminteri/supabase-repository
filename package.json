@@ -1,6 +1,6 @@
 {
   "name": "supabase-repository",
-  "version": "1.0.7",
+  "version": "1.0.9",
   "description": "",
   "main": "dist/index.js",
   "module": "dist/index.msj",
@@ -9,6 +9,7 @@
     "lib"
   ],
   "scripts": {
+    "clean": "rm -rf dist",
     "build": "tsup lib/index.ts --format cjs,esm --dts",
     "lint": "tsc"
   },

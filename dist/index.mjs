@@ -21,10 +21,32 @@ var __async = (__this, __arguments, generator) => {
 
 // lib/classes/Repository.ts
 var Repository = class {
+  /**
+   * Creates an instance of Repository.
+   * 
+   * @constructor
+   * @param {SupabaseClient} supabaseClient - The Supabase client for data interaction.
+   * @param {string} tableName - The name of the table to interact with.
+   */
   constructor(supabaseClient, tableName) {
     this._supabaseClient = supabaseClient;
     this._tableName = tableName;
   }
+  /**
+   * Retrieves all records from the specified table in Supabase.
+   *
+   * @returns {Promise<any[]>} A promise that resolves to an array of records.
+   * @throws {Error} If an error occurs during the data retrieval process.
+   *
+   * @example
+   * // Usage example:
+   * try {
+   *   const allRecords = await yourInstance.GetAll();
+   *   console.log('All Records:', allRecords);
+   * } catch (error) {
+   *   console.error('Error getting all records:', error.message);
+   * }
+   */
   GetAll() {
     return __async(this, null, function* () {
       try {
@@ -39,6 +61,23 @@ var Repository = class {
       }
     });
   }
+  /**
+   * Retrieves a single record from the specified table in Supabase based on the provided ID.
+   *
+   * @param {number} id - The unique identifier of the record to retrieve.
+   * @returns {Promise<any | null>} A promise that resolves to the retrieved record, or `null` if no matching record is found.
+   * @throws {Error} If an error occurs during the data retrieval process.
+   *
+   * @example
+   * // Usage example:
+   * try {
+   *   const recordId = 1;
+   *   const record = await yourInstance.GetById(recordId);
+   *   console.log('Record by ID:', record);
+   * } catch (error) {
+   *   console.error('Error getting record by ID:', error.message);
+   * }
+   */
   GetById(id) {
     return __async(this, null, function* () {
       try {
@@ -53,6 +92,23 @@ var Repository = class {
       }
     });
   }
+  /**
+   * Retrieves records from the specified table in Supabase based on an array of IDs.
+   *
+   * @param {number[]} ids - An array of unique identifiers of the records to retrieve.
+   * @returns {Promise<any[]>} A promise that resolves to an array of matching records.
+   * @throws {Error} If an error occurs during the data retrieval process.
+   *
+   * @example
+   * // Usage example:
+   * try {
+   *   const recordIds = [1, 2, 3];
+   *   const records = await yourInstance.GetByIds(recordIds);
+   *   console.log('Records by IDs:', records);
+   * } catch (error) {
+   *   console.error('Error getting records by IDs:', error.message);
+   * }
+   */
   GetByIds(ids) {
     return __async(this, null, function* () {
       try {
@@ -67,6 +123,23 @@ var Repository = class {
       }
     });
   }
+  /**
+   * Inserts a new record into the specified table in Supabase.
+   *
+   * @param {any} object - The data object to insert.
+   * @returns {Promise<void>} A promise that resolves when the insertion is successful.
+   * @throws {Error} If an error occurs during the data insertion process.
+   *
+   * @example
+   * // Usage example:
+   * try {
+   *   const newRecord = object;
+   *   await yourInstance.Insert(newRecord);
+   *   console.log('Record inserted successfully');
+   * } catch (error) {
+   *   console.error('Error inserting record:', error.message);
+   * }
+   */
   Insert(object) {
     return __async(this, null, function* () {
       try {
@@ -80,10 +153,29 @@ var Repository = class {
       }
     });
   }
-  Update(id, updatedany) {
+  /**
+   * Updates a record in the specified table in Supabase based on the provided ID.
+   *
+   * @param {number} id - The unique identifier of the record to update.
+   * @param {any} updatedObject - The updated data object.
+   * @returns {Promise<void>} A promise that resolves when the update is successful.
+   * @throws {Error} If an error occurs during the data update process.
+   *
+   * @example
+   * // Usage example:
+   * try {
+   *   const recordId = 1;
+   *   const updatedData = object;
+   *   await yourInstance.Update(recordId, updatedData);
+   *   console.log('Record updated successfully');
+   * } catch (error) {
+   *   console.error('Error updating record:', error.message);
+   * }
+   */
+  Update(id, updatedObject) {
     return __async(this, null, function* () {
       try {
-        const { data, error } = yield this._supabaseClient.from(this._tableName).update(updatedany).eq("id", id);
+        const { data, error } = yield this._supabaseClient.from(this._tableName).update(updatedObject).eq("id", id);
         if (error) {
           throw new Error(`Error updating data: ${error.message}`);
         }
@@ -94,6 +186,23 @@ var Repository = class {
       }
     });
   }
+  /**
+   * Deletes a record from the specified table in Supabase based on the provided ID.
+   *
+   * @param {number} id - The unique identifier of the record to delete.
+   * @returns {Promise<void>} A promise that resolves when the deletion is successful.
+   * @throws {Error} If an error occurs during the data deletion process.
+   *
+   * @example
+   * // Usage example:
+   * try {
+   *   const recordId = 1;
+   *   await yourInstance.Delete(recordId);
+   *   console.log('Record deleted successfully');
+   * } catch (error) {
+   *   console.error('Error deleting record:', error.message);
+   * }
+   */
   Delete(id) {
     return __async(this, null, function* () {
       try {
@@ -107,7 +216,22 @@ var Repository = class {
       }
     });
   }
-  GetCount() {
+  /**
+   * Retrieves the count of records in the specified table in Supabase.
+   *
+   * @returns {Promise<number>} A promise that resolves to the count of records.
+   * @throws {Error} If an error occurs during the data retrieval process.
+   *
+   * @example
+   * // Usage example:
+   * try {
+   *   const recordCount = await yourInstance.Count();
+   *   console.log('Record count:', recordCount);
+   * } catch (error) {
+   *   console.error('Error getting record count:', error.message);
+   * }
+   */
+  Count() {
     return __async(this, null, function* () {
       try {
         const { count, error } = yield this._supabaseClient.from(this._tableName).select("*", { count: "exact", head: true });
